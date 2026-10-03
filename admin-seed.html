@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Bootstrap First Admin — DELETE AFTER USE</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <style>body{padding:40px;max-width:640px;margin:auto}</style>
+</head>
+<body>
+  <h1>⚠️ Bootstrap First Admin</h1>
+  <p>
+    1. Register a normal account using <a href="/login.html">Login → Create Account</a>.<br>
+    2. Return here, enter that email, click Promote.<br>
+    3. Log out and log back in — you'll land on <code>/admin.html</code>.<br>
+    4. <strong>Delete this file from your deployment.</strong>
+  </p>
+
+  <div class="card">
+    <div class="field">
+      <label>Email of account to promote</label>
+      <input id="email" type="email" placeholder="admin@example.com" />
+    </div>
+    <div class="field">
+      <label>Role</label>
+      <select id="role">
+        <option value="admin">admin</option>
+        <option value="teacher">teacher</option>
+      </select>
+    </div>
+    <button class="btn btn-danger" id="go">Promote to role</button>
+    <div id="out" style="margin-top:16px"></div>
+  </div>
+
+  <script type="module">
+    import { users } from "/js/db.js";
+    import { updateDoc, doc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+    import { db } from "/js/firebase-init.js";
+
+    document.getElementById("go").addEventListener("click", async () => {
+      const email = document.getElementById("email").value.trim();
+      const role  = document.getElementById("role").value;
+      const out = document.getElementById("out");
+      out.textContent = "Searching…";
+
+      // find user by email
+      const found = await users.list({ filters: [["email","==",email]], max: 1 });
+      if (!found.length) { out.textContent = "❌ No user with that email."; return; }
+
+      // Direct write — Firestore rules will reject if caller isn't already admin.
+      // For the FIRST admin, temporarily relax rules (see note below).
+      await updateDoc(doc(db, "users", found[0].id), { role });
+      out.innerHTML = `✅ Promoted <b>${email}</b> to <b>${role}</b>. Now delete this file.`;
+    });
+  </script>
+</body>
+</html>
