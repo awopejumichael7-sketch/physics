@@ -197,3 +197,51 @@
 }
 .yt-facade:hover .yt-play > span > span { transform: scale(1.08); }
 .yt-facade .yt-play > span > span { transition: transform var(--transition); }
+/* ---------- Topics list ---------- */
+.topic-card {
+  cursor: pointer;
+  display: flex; flex-direction: column;
+}
+.topic-card-head { display: flex; gap: var(--sp-3); align-items: flex-start; }
+.topic-num {
+  flex-shrink: 0;
+  width: 42px; height: 42px; border-radius: 12px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--royal-600), var(--royal-400));
+  color: #fff; font-weight: 800; font-family: var(--font-display);
+}
+.topic-meta { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 4px; }
+.pill {
+  display: inline-block;
+  padding: 3px 10px;
+  font-size: .72rem;
+  font-weight: 700;
+  border-radius: 999px;
+  letter-spacing: .03em;
+  background: var(--lightblue-100);
+  color: var(--royal-600);
+}
+.pill-class    { background: var(--navy-900); color: var(--gold-500); }
+.pill-success  { background: rgba(30,158,90,.12); color: var(--success); }
+.pill-gold     { background: rgba(212,175,55,.18); color: #8a6c14; }
+.pill-danger   { background: rgba(214,58,58,.12); color: var(--danger); }
+
+/* Filter chip row */
+.chip-row {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: var(--sp-4);
+}
+.chip {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1.5px solid var(--grey-200);
+  background: var(--white);
+  color: var(--grey-600);
+  font-size: .85rem; font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.chip:hover { border-color: var(--royal-400); color: var(--royal-600); }
+.chip.active {
+  background: var(--navy-900); color: #fff; border-color: var(--navy-900);
+}
