@@ -186,3 +186,14 @@
 .grid-2 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 .grid-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 .grid-4 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+/* ---------- YouTube facade / video placeholder ---------- */
+.video-placeholder {
+  border: 2px dashed var(--grey-200);
+  border-radius: var(--radius-md);
+  padding: var(--sp-6) var(--sp-4);
+  text-align: center;
+  background: var(--grey-100);
+  color: var(--navy-900);
+}
+.yt-facade:hover .yt-play > span > span { transform: scale(1.08); }
+.yt-facade .yt-play > span > span { transition: transform var(--transition); }
