@@ -245,3 +245,36 @@
 .chip.active {
   background: var(--navy-900); color: #fff; border-color: var(--navy-900);
 }
+/* ---------- Topic detail ---------- */
+.topic-section { margin-bottom: var(--sp-5); }
+.topic-actions { margin-bottom: var(--sp-5); }
+
+.formula-grid { display: grid; gap: var(--sp-3); grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.formula-card {
+  background: var(--lightblue-100);
+  border-radius: var(--radius-md);
+  padding: var(--sp-4);
+  border-left: 4px solid var(--royal-600);
+}
+.formula-card code {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--navy-900);
+}
+
+.example-card {
+  padding: var(--sp-4);
+  border: 1px solid var(--grey-200);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--sp-3);
+  background: var(--white);
+}
+
+#topic-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-top: var(--sp-5);
+  flex-wrap: wrap;
+}
+#topic-nav a { flex: 1 1 180px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
