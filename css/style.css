@@ -1,0 +1,206 @@
+/* ============================================================
+   SCHOLAR'S CAMP — DESIGN TOKENS
+   Deep navy · Royal blue · White · Gold · Light blue accents
+   ============================================================ */
+:root {
+  /* Colors */
+  --navy-900: #0a1533;
+  --navy-800: #0f1e46;
+  --navy-700: #16295c;
+  --royal-600: #1e40af;
+  --royal-500: #2952cc;
+  --royal-400: #4a6ee0;
+  --lightblue-300: #8ec5ff;
+  --lightblue-100: #e6f0ff;
+  --gold-500: #d4af37;
+  --gold-400: #e6c757;
+  --gold-300: #f4d97a;
+  --white: #ffffff;
+  --grey-100: #f5f7fb;
+  --grey-200: #e4e8f0;
+  --grey-400: #97a1b5;
+  --grey-600: #5a6478;
+  --grey-800: #2a3145;
+  --success: #1e9e5a;
+  --danger:  #d63a3a;
+  --warning: #e0932a;
+
+  /* Typography */
+  --font-sans: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-display: "Poppins", "Inter", sans-serif;
+
+  /* Spacing scale */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px;
+  --sp-4: 16px; --sp-5: 24px; --sp-6: 32px;
+  --sp-7: 48px; --sp-8: 64px;
+
+  /* Radius & shadow */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 28px;
+  --shadow-sm: 0 1px 3px rgba(10,21,51,.08);
+  --shadow-md: 0 4px 14px rgba(10,21,51,.10);
+  --shadow-lg: 0 12px 32px rgba(10,21,51,.16);
+
+  /* Layout */
+  --sidebar-w: 260px;
+  --header-h: 64px;
+  --bottomnav-h: 64px;
+
+  /* Motion */
+  --transition: 180ms cubic-bezier(.4,0,.2,1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body {
+  font-family: var(--font-sans);
+  color: var(--grey-800);
+  background: var(--grey-100);
+  line-height: 1.55;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+img, svg, video { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+a { color: var(--royal-600); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---------- Typography ---------- */
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  color: var(--navy-900);
+  margin: 0 0 var(--sp-3) 0;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(1.75rem, 3.5vw, 2.5rem); font-weight: 700; }
+h2 { font-size: clamp(1.35rem, 2.5vw, 1.85rem); font-weight: 700; }
+h3 { font-size: 1.2rem; font-weight: 600; }
+h4 { font-size: 1rem; font-weight: 600; }
+p  { margin: 0 0 var(--sp-3) 0; }
+small { font-size: .85rem; color: var(--grey-600); }
+
+/* ---------- Accessibility ---------- */
+:focus-visible {
+  outline: 3px solid var(--gold-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    transition-duration: .001ms !important;
+  }
+}
+
+/* ---------- App shell ---------- */
+.app-header {
+  position: sticky; top: 0; z-index: 50;
+  height: var(--header-h);
+  background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+  color: var(--white);
+  display: flex; align-items: center;
+  padding: 0 var(--sp-4);
+  gap: var(--sp-3);
+  box-shadow: var(--shadow-md);
+}
+.app-header .brand {
+  display: flex; align-items: center; gap: var(--sp-3);
+  color: var(--white); text-decoration: none;
+}
+.app-header .brand-mark {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: var(--gold-500);
+  display: grid; place-items: center;
+  font-weight: 800; color: var(--navy-900);
+  font-family: var(--font-display);
+}
+.app-header .brand-text { display: flex; flex-direction: column; line-height: 1.1; }
+.app-header .brand-text strong { font-family: var(--font-display); font-size: 1rem; }
+.app-header .brand-text span   { font-size: .72rem; color: var(--lightblue-300); letter-spacing: .06em; text-transform: uppercase; }
+.app-header .spacer { flex: 1; }
+
+/* Online/offline pill */
+.conn-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 5px 11px; border-radius: 999px;
+  font-size: .78rem; font-weight: 600;
+  background: rgba(255,255,255,.12);
+  color: var(--white);
+}
+.conn-pill .dot { width: 8px; height: 8px; border-radius: 50%; }
+.conn-pill.online  .dot { background: #4ade80; box-shadow: 0 0 0 0 #4ade80; animation: pulse 2s infinite; }
+.conn-pill.offline .dot { background: var(--warning); }
+@keyframes pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(74,222,128,.7); }
+  70%  { box-shadow: 0 0 0 8px rgba(74,222,128,0); }
+  100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+}
+
+/* Sidebar (desktop) */
+.app-layout { display: flex; min-height: calc(100vh - var(--header-h)); }
+.app-sidebar {
+  width: var(--sidebar-w); flex-shrink: 0;
+  background: var(--white);
+  border-right: 1px solid var(--grey-200);
+  padding: var(--sp-4);
+  position: sticky; top: var(--header-h);
+  height: calc(100vh - var(--header-h));
+  overflow-y: auto;
+}
+.app-sidebar nav a {
+  display: flex; align-items: center; gap: var(--sp-3);
+  padding: 11px var(--sp-3);
+  border-radius: var(--radius-md);
+  color: var(--grey-800);
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 2px;
+  transition: background var(--transition), color var(--transition);
+}
+.app-sidebar nav a:hover { background: var(--lightblue-100); color: var(--royal-600); }
+.app-sidebar nav a.active {
+  background: linear-gradient(135deg, var(--royal-600), var(--royal-500));
+  color: var(--white);
+}
+.app-sidebar nav a .icon { width: 20px; height: 20px; flex-shrink: 0; }
+
+.app-main {
+  flex: 1; min-width: 0;
+  padding: var(--sp-5);
+  padding-bottom: calc(var(--sp-5) + var(--bottomnav-h));
+}
+
+/* Bottom nav (mobile) */
+.bottom-nav {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  height: var(--bottomnav-h);
+  background: var(--white);
+  border-top: 1px solid var(--grey-200);
+  z-index: 60;
+  box-shadow: 0 -4px 14px rgba(10,21,51,.06);
+}
+.bottom-nav ul {
+  list-style: none; margin: 0; padding: 0;
+  display: flex; height: 100%;
+}
+.bottom-nav li { flex: 1; }
+.bottom-nav a {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  height: 100%; gap: 2px;
+  color: var(--grey-600); font-size: .7rem;
+  text-decoration: none;
+}
+.bottom-nav a.active { color: var(--royal-600); }
+.bottom-nav a .icon { width: 22px; height: 22px; }
