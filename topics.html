@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1533" />
+  <title>Physics Topics — Scholar's Camp</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a href="/dashboard.html" class="brand">
+      <div class="brand-mark">SC</div>
+      <div class="brand-text"><strong>SCHOLAR'S CAMP</strong><span>Physics Learning Centre</span></div>
+    </a>
+    <div class="spacer"></div>
+    <span class="conn-pill online" data-conn-pill><span class="dot"></span> ONLINE</span>
+    <button class="btn btn-ghost btn-sm" id="logout-btn" style="color:#fff">Logout</button>
+  </header>
+
+  <div class="app-layout">
+    <aside class="app-sidebar">
+      <nav>
+        <a href="/dashboard.html"><span class="icon">🏠</span> Dashboard</a>
+        <a href="/topics.html" class="active"><span class="icon">📘</span> Physics Topics</a>
+        <a href="/resources.html"><span class="icon">📚</span> Study Materials</a>
+        <a href="/exams.html"><span class="icon">📝</span> Exams</a>
+        <a href="/results.html"><span class="icon">📊</span> My Results</a>
+      </nav>
+    </aside>
+
+    <main class="app-main">
+      <h1 style="margin-bottom:var(--sp-2)">Physics Topics</h1>
+      <p style="color:var(--grey-600);margin-bottom:var(--sp-5)">
+        Complete SS1 – SS3 curriculum — <span id="topic-count">loading…</span>
+      </p>
+
+      <div class="field" style="margin-bottom:var(--sp-4)">
+        <input id="topic-search" type="search" placeholder="🔎 Search topics (e.g. Newton's Laws, waves, magnetism)…"
+               aria-label="Search topics" />
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Filter by class">
+        <button class="chip active" data-filter-class="all">All Classes</button>
+        <button class="chip" data-filter-class="SS1">SS1</button>
+        <button class="chip" data-filter-class="SS2">SS2</button>
+        <button class="chip" data-filter-class="SS3">SS3</button>
+      </div>
+
+      <div class="chip-row" role="group" aria-label="Filter by status">
+        <button class="chip active" data-filter-status="all">All</button>
+        <button class="chip" data-filter-status="completed">Completed</button>
+        <button class="chip" data-filter-status="incomplete">Not completed</button>
+        <button class="chip" data-filter-status="bookmarked">⭐ Bookmarked</button>
+      </div>
+
+      <div id="topic-list" class="grid grid-2">
+        <div class="card"><div class="skeleton" style="height:1em;width:50%"></div><div class="skeleton" style="height:1em;margin-top:8px"></div></div>
+        <div class="card"><div class="skeleton" style="height:1em;width:50%"></div><div class="skeleton" style="height:1em;margin-top:8px"></div></div>
+      </div>
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <ul>
+      <li><a href="/dashboard.html"><span class="icon">🏠</span>Home</a></li>
+      <li><a href="/topics.html" class="active"><span class="icon">📘</span>Topics</a></li>
+      <li><a href="/resources.html"><span class="icon">📚</span>Study</a></li>
+      <li><a href="/exams.html"><span class="icon">📝</span>Exams</a></li>
+      <li><a href="/results.html"><span class="icon">📊</span>Results</a></li>
+    </ul>
+  </nav>
+
+  <div id="toast-container"></div>
+
+  <script type="module">
+    import { logout } from "/js/auth.js";
+    document.getElementById("logout-btn").addEventListener("click", async () => {
+      await logout(); window.location.replace("/login.html");
+    });
+    import "/js/topics.js";
+  </script>
+</body>
+</html>
