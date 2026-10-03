@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1533" />
+  <meta name="description" content="Scholar's Camp — Complete SS1–SS3 Physics learning platform with lessons, videos, textbooks, exams, and offline study." />
+  <title>Scholar's Camp — Physics</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+  <header class="app-header">
+    <a href="/" class="brand" aria-label="Scholar's Camp home">
+      <div class="brand-mark">SC</div>
+      <div class="brand-text">
+        <strong>SCHOLAR'S CAMP</strong>
+        <span>Physics Learning Centre</span>
+      </div>
+    </a>
+    <div class="spacer"></div>
+    <span class="conn-pill online" data-conn-pill><span class="dot"></span> ONLINE</span>
+  </header>
+
+  <main class="app-main" style="max-width:1100px;margin:0 auto">
+    <!-- HERO -->
+    <section class="card" style="
+        background:linear-gradient(135deg,var(--navy-900),var(--royal-600));
+        color:#fff; border:none; padding:var(--sp-7) var(--sp-5); text-align:center">
+      <h1 style="color:#fff; margin-bottom:var(--sp-3)">PHYSICS</h1>
+      <p style="color:var(--lightblue-100); font-size:1.1rem; max-width:640px; margin:0 auto var(--sp-5)">
+        Learn Physics. Understand the Principles. Master the Examination.
+      </p>
+      <div style="display:flex; gap:var(--sp-3); justify-content:center; flex-wrap:wrap">
+        <a href="/login.html?mode=register" class="btn btn-gold">START LEARNING</a>
+        <a href="/login.html" class="btn btn-outline" style="border-color:#fff;color:#fff">LOGIN</a>
+        <a href="/login.html?mode=register" class="btn btn-ghost" style="color:#fff">CREATE ACCOUNT</a>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <h2 style="margin:var(--sp-6) 0 var(--sp-4)">Everything You Need for SS1 – SS3 Physics</h2>
+    <div class="grid grid-3">
+      <div class="tile"><div class="icon-wrap">📘</div><h3>46 Complete Topics</h3><p>Full WAEC/NECO/JAMB Physics curriculum.</p></div>
+      <div class="tile"><div class="icon-wrap">🎬</div><h3>Video Lessons</h3><p>Curated YouTube lessons per topic.</p></div>
+      <div class="tile"><div class="icon-wrap">📚</div><h3>Google Drive Textbooks</h3><p>Read PDFs inside the app or download.</p></div>
+      <div class="tile"><div class="icon-wrap">📝</div><h3>Practice & Exams</h3><p>Topic tests, mocks, WAEC/NECO/JAMB style.</p></div>
+      <div class="tile"><div class="icon-wrap">📈</div><h3>Progress Tracking</h3><p>See topics completed, scores, and average.</p></div>
+      <div class="tile"><div class="icon-wrap">📶</div><h3>Offline Learning</h3><p>Study downloaded materials without internet.</p></div>
+    </div>
+  </main>
+
+  <footer style="text-align:center;padding:var(--sp-6) var(--sp-4);color:var(--grey-600);font-size:.9rem">
+    <strong style="color:var(--navy-900);font-family:var(--font-display)">SCHOLAR'S CAMP</strong> · Physics Learning Platform · SS1 – SS3<br>
+    © <span id="year"></span> Scholar's Camp · 
+    <a href="#">About</a> · <a href="#">Contact</a> · <a href="#">Privacy</a> · <a href="#">Terms</a> · <a href="#">Help</a>
+  </footer>
+
+  <div id="toast-container"></div>
+
+  <script type="module">
+    import { initConnectionPill } from "/js/ui.js";
+    import "/js/sw-register.js";
+    initConnectionPill();
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
