@@ -1,0 +1,17 @@
+/* Mobile-first: hide sidebar, show bottom nav */
+@media (max-width: 900px) {
+  .app-sidebar { display: none; }
+  .bottom-nav  { display: block; }
+  .app-main    { padding: var(--sp-4); padding-bottom: calc(var(--bottomnav-h) + var(--sp-4)); }
+}
+@media (max-width: 480px) {
+  .app-header { padding: 0 var(--sp-3); }
+  .app-header .brand-text span { display: none; }
+  h1 { font-size: 1.55rem; }
+  h2 { font-size: 1.2rem; }
+  .card, .tile, .stat-card { padding: var(--sp-4); }
+  .modal { border-radius: var(--radius-md); }
+}
+@media (min-width: 901px) {
+  #toast-container { top: 76px; right: 20px; }
+}
