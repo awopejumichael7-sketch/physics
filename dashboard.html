@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a1533" />
+  <title>Dashboard — Scholar's Camp</title>
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="icon" href="/assets/icons/icon-192.png" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/components.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="app-header">
+    <a href="/dashboard.html" class="brand">
+      <div class="brand-mark">SC</div>
+      <div class="brand-text">
+        <strong>SCHOLAR'S CAMP</strong>
+        <span>Physics Learning Centre</span>
+      </div>
+    </a>
+    <div class="spacer"></div>
+    <span class="conn-pill online" data-conn-pill><span class="dot"></span> ONLINE</span>
+    <button class="btn btn-ghost btn-sm" id="logout-btn" style="color:#fff" aria-label="Logout">Logout</button>
+  </header>
+
+  <!-- LAYOUT -->
+  <div class="app-layout">
+    <!-- SIDEBAR -->
+    <aside class="app-sidebar">
+      <nav>
+        <a href="/dashboard.html" class="active"><span class="icon">🏠</span> Dashboard</a>
+        <a href="/topics.html"><span class="icon">📘</span> Physics Topics</a>
+        <a href="/resources.html"><span class="icon">📚</span> Study Materials</a>
+        <a href="/exams.html"><span class="icon">📝</span> Exams</a>
+        <a href="/results.html"><span class="icon">📊</span> My Results</a>
+        <a href="#" id="nav-bookmarks"><span class="icon">⭐</span> Bookmarks</a>
+        <a href="#" id="nav-offline"><span class="icon">⬇️</span> Offline Materials</a>
+      </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="app-main">
+      <!-- Student banner -->
+      <section class="card" id="student-banner" style="
+        background:linear-gradient(135deg,var(--navy-900),var(--royal-600));
+        color:#fff;border:none;margin-bottom:var(--sp-5)">
+        <div style="display:flex;align-items:center;gap:var(--sp-4);flex-wrap:wrap">
+          <div id="avatar" style="
+            width:64px;height:64px;border-radius:50%;
+            background:var(--gold-500);color:var(--navy-900);
+            display:grid;place-items:center;font-size:1.6rem;font-weight:800;
+            font-family:var(--font-display)">SC</div>
+          <div style="flex:1;min-width:220px">
+            <h2 style="color:#fff;margin:0" id="student-name">Loading…</h2>
+            <div style="color:var(--lightblue-100);font-size:.92rem;margin-top:4px">
+              <span id="student-id">—</span> · Class: <span id="student-class">—</span>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="font-size:.75rem;color:var(--lightblue-300);letter-spacing:.06em;text-transform:uppercase">Overall Progress</div>
+            <div style="font-family:var(--font-display);font-size:2rem;font-weight:800" id="progress-pct">0%</div>
+          </div>
+        </div>
+        <div class="progress progress-lg" style="margin-top:var(--sp-4);background:rgba(255,255,255,.15)">
+          <span id="progress-bar" style="width:0%"></span>
+        </div>
+      </section>
+
+      <!-- Statistics -->
+      <div class="grid grid-4" style="margin-bottom:var(--sp-5)">
+        <div class="stat-card"><div class="value" id="stat-completed">0</div><div class="label">Topics completed</div></div>
+        <div class="stat-card"><div class="value" id="stat-remaining">46</div><div class="label">Topics remaining</div></div>
+        <div class="stat-card"><div class="value" id="stat-videos">0</div><div class="label">Videos watched</div></div>
+        <div class="stat-card"><div class="value" id="stat-exams">0</div><div class="label">Exams completed</div></div>
+      </div>
+      <div class="grid grid-3" style="margin-bottom:var(--sp-5)">
+        <div class="stat-card" style="background:linear-gradient(135deg,var(--royal-600),var(--royal-400))">
+          <div class="value" id="stat-attempted">0</div><div class="label">Questions attempted</div>
+        </div>
+        <div class="stat-card" style="background:linear-gradient(135deg,var(--gold-500),var(--gold-400));color:var(--navy-900)">
+          <div class="value" id="stat-avg">—</div><div class="label">Average score</div>
+        </div>
+        <div class="stat-card" style="background:linear-gradient(135deg,var(--navy-800),var(--navy-700))">
+          <div class="value" id="stat-streak">0</div><div class="label">Day streak</div>
+        </div>
+      </div>
+
+      <!-- Announcements -->
+      <h2 style="margin-bottom:var(--sp-3)">Announcements</h2>
+      <div id="announcements" class="grid" style="margin-bottom:var(--sp-6)">
+        <div class="card"><div class="skeleton" style="height:1em;width:60%"></div><div class="skeleton" style="height:1em;margin-top:8px"></div></div>
+      </div>
+
+      <!-- Quick actions -->
+      <h2 style="margin-bottom:var(--sp-3)">Quick Actions</h2>
+      <div class="grid grid-3">
+        <a class="tile" href="/topics.html"><div class="icon-wrap">📘</div><h3>Physics Topics</h3><p>All 46 topics — SS1 to SS3.</p></a>
+        <a class="tile" href="/resources.html"><div class="icon-wrap">📚</div><h3>Study Materials</h3><p>Textbooks, notes, worksheets.</p></a>
+        <a class="tile" href="/exams.html"><div class="icon-wrap">📝</div><h3>Take Examination</h3><p>Practice, topic tests, mocks.</p></a>
+        <a class="tile" href="/results.html"><div class="icon-wrap">📊</div><h3>My Results</h3><p>See all past exam scores.</p></a>
+        <a class="tile" href="#" id="qa-bookmarks"><div class="icon-wrap">⭐</div><h3>Bookmarks</h3><p>Your saved topics & resources.</p></a>
+        <a class="tile" href="#" id="qa-offline"><div class="icon-wrap">⬇️</div><h3>Offline Materials</h3><p>Downloaded for offline study.</p></a>
+      </div>
+    </main>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <nav class="bottom-nav">
+    <ul>
+      <li><a href="/dashboard.html" class="active"><span class="icon">🏠</span>Home</a></li>
+      <li><a href="/topics.html"><span class="icon">📘</span>Topics</a></li>
+      <li><a href="/resources.html"><span class="icon">📚</span>Study</a></li>
+      <li><a href="/exams.html"><span class="icon">📝</span>Exams</a></li>
+      <li><a href="/results.html"><span class="icon">📊</span>Results</a></li>
+    </ul>
+  </nav>
+
+  <div id="toast-container"></div>
+
+  <script type="module">
+    import { requireAuth, logout } from "/js/auth.js";
+    import { topics, progress, results, announcements } from "/js/db.js";
+    import { toast, initConnectionPill, escapeHtml } from "/js/ui.js";
+    import "/js/sw-register.js";
+
+    initConnectionPill();
+
+    const session = await requireAuth(["student", "teacher", "admin"]);
+    if (!session) throw new Error("Not authenticated");
+    const { user, profile } = session;
+
+    // Fill student banner
+    document.getElementById("student-name").textContent = profile.fullName || user.displayName || "Student";
+    document.getElementById("student-id").textContent   = profile.studentId || "—";
+    document.getElementById("student-class").textContent = profile.studentClass || "—";
+    document.getElementById("avatar").textContent = initials(profile.fullName);
+
+    // Logout
+    document.getElementById("logout-btn").addEventListener("click", async () => {
+      await logout();
+      window.location.replace("/login.html");
+    });
+
+    // Load topics and progress in parallel
+    const [allTopics, myProgress, myResults] = await Promise.all([
+      topics.list({ max: 100 }),
+      progress.listByUser(user.uid),
+      results.listByUser(user.uid)
+    ]);
+
+    renderProgress(allTopics, myProgress, myResults);
+    renderAnnouncements();
+
+    /* ---------- RENDERERS ---------- */
+
+    function renderProgress(allTopics, prog, res) {
+      const totalTopics = allTopics.length || 46;
+      const completedIds = new Set(prog.filter(p => p.completed).map(p => p.topicId));
+      const completed = completedIds.size;
+      const remaining = totalTopics - completed;
+      const pct = Math.round((completed / totalTopics) * 100);
+
+      document.getElementById("progress-pct").textContent = pct + "%";
+      document.getElementById("progress-bar").style.width = pct + "%";
+      document.getElementById("stat-completed").textContent = completed;
+      document.getElementById("stat-remaining").textContent = remaining;
+
+      const videosWatched = prog.filter(p => p.videoWatched).length;
+      document.getElementById("stat-videos").textContent = videosWatched;
+
+      const examsCompleted = res.length;
+      document.getElementById("stat-exams").textContent = examsCompleted;
+
+      const attempted = res.reduce((s, r) => s + (r.totalQuestions || 0), 0);
+      document.getElementById("stat-attempted").textContent = attempted;
+
+      if (res.length) {
+        const avg = Math.round(res.reduce((s, r) => s + (r.percentage || 0), 0) / res.length);
+        document.getElementById("stat-avg").textContent = avg + "%";
+      }
+
+      // Day streak: count consecutive days with activity
+      const days = new Set(prog.map(p => (p.lastViewedAt || "").slice(0, 10)).filter(Boolean));
+      document.getElementById("stat-streak").textContent = computeStreak(days);
+    }
+
+    function computeStreak(dateSet) {
+      let streak = 0;
+      const today = new Date();
+      for (let i = 0; i < 365; i++) {
+        const d = new Date(today);
+        d.setDate(today.getDate() - i);
+        const key = d.toISOString().slice(0, 10);
+        if (dateSet.has(key)) streak++;
+        else if (i > 0) break;
+      }
+      return streak;
+    }
+
+    function renderAnnouncements() {
+      const mount = document.getElementById("announcements");
+      announcements.subscribe(items => {
+        if (!items.length) {
+          mount.innerHTML = `<div class="card"><p style="margin:0;color:var(--grey-600)">No announcements yet. Check back soon.</p></div>`;
+          return;
+        }
+        mount.innerHTML = items.slice(0, 4).map(a => `
+          <div class="card">
+            <div style="display:flex;justify-content:space-between;gap:var(--sp-3);flex-wrap:wrap">
+              <h3 style="margin:0">${escapeHtml(a.title || "Announcement")}</h3>
+              <small>${formatDate(a.createdAt)}</small>
+            </div>
+            <p style="margin:var(--sp-2) 0 0;color:var(--grey-600)">${escapeHtml(a.body || "")}</p>
+          </div>
+        `).join("");
+      });
+    }
+
+    /* ---------- HELPERS ---------- */
+
+    function initials(name = "") {
+      return name.split(/\s+/).filter(Boolean).slice(0, 2).map(s => s[0].toUpperCase()).join("") || "SC";
+    }
+    function formatDate(ts) {
+      if (!ts) return "";
+      const d = ts.toDate ? ts.toDate() : new Date(ts);
+      return d.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+    }
+  </script>
+</body>
+</html>
